@@ -74,52 +74,54 @@
                     <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
                 </nav>
             </div><!-- #navigation -->
-	        <?php
-	        if ( is_page( 'design-studio' )) { ?>
-                <div id="mobile-yes">
-                    <div id="background-sub"><img
-                                src="http://thompson-cbg.com/bw/wp-content/uploads/2014/08/belle-isle-neg-edge-thompson-cbg1.jpg"
-                                alt="" border="0"></div>
-                </div>
-                <div id="contact-info">
-			        <?php //menu generator
-			        $args    = array(
-				        'taxonomy'   => "product_type",
-				        'order'      => 'ASC',
-				        'orderby'    => 'term_order',
-				        'hide_empty' => 0
-			        );
-			        $terms         = get_terms( $args );
-			        if ( ! is_wp_error( $terms ) && is_array( $terms ) && ! empty( $terms ) ):
-				        echo '<ul>';
-				        foreach($terms as $term):
-					        echo '<li>'.$term->slug.'</li>';
-					        $args = array(
-						        'post_type'=>'product',
-						        'posts_per_page'=>-1,
-						        'orderby'=>'menu_order',
-						        'tax_query'=>array(
-							        array(
-								        'taxonomy' => 'product_type',
-								        'field'    => 'term_id',
-								        'terms'    => $term->term_id,
-							        ),
-						        ),
-					        );
-					        $query = new WP_Query($args);
-					        if($query->have_posts() ):
-						        echo '<ul>';
-						        while($query->have_posts()):
-							        $query->the_post();
-							        echo '<li><a href="'.get_the_permalink().'">'. get_the_title() . '</a></li>';
-						        endwhile;
-						        echo '</ul>';
-						        wp_reset_postdata();
-					        endif;
-				        endforeach;
-				        echo '</ul>';?>
-			        <?php endif;//endif ?>
-                </div>  <!-- contact-info -->
+	        <?php $pt = get_post_type($post);
+	        if ( is_page( 'design-studio' ) || ($pt && strcmp($pt,'product')===0)) { ?>
+                <div id="design-info">
+                    <div class="wrapper">
+                        <div class="title">
+                            Design Studio
+                        </div><!--.title-->
+                        <hr/>
+                        <?php //menu generator
+                        $args    = array(
+                            'taxonomy'   => "product_type",
+                            'order'      => 'ASC',
+                            'orderby'    => 'term_order',
+                            'hide_empty' => 0
+                        );
+                        $terms         = get_terms( $args );
+                        if ( ! is_wp_error( $terms ) && is_array( $terms ) && ! empty( $terms ) ):
+                            echo '<ul class="top-menu">';
+                            foreach($terms as $term):
+                                echo '<li class="top"><span class="plus">+</span><span class="min">-</span>'.$term->slug;
+                                $args = array(
+                                    'post_type'=>'product',
+                                    'posts_per_page'=>-1,
+                                    'orderby'=>'menu_order',
+                                    'tax_query'=>array(
+                                        array(
+                                            'taxonomy' => 'product_type',
+                                            'field'    => 'term_id',
+                                            'terms'    => $term->term_id,
+                                        ),
+                                    ),
+                                );
+                                $query = new WP_Query($args);
+                                if($query->have_posts() ):
+                                    echo '<ul class="sub-menu">';
+                                    while($query->have_posts()):
+                                        $query->the_post();
+                                        echo '<li class="sub"><a href="'.get_the_permalink().'">'. get_the_title() . '</a></li>';
+                                    endwhile;
+                                    echo '</ul>';
+                                    wp_reset_postdata();
+                                endif;
+                                echo '</li>';
+                            endforeach;
+                            echo '</ul>';?>
+                        <?php endif;//endif ?>
+                    </div><!--.wrapper-->
+                </div>  <!-- #design-info -->
 	        <?php } ?>
 	        <?php if ( is_page( 'Contact' ) ) { ?>
                 <div id="mobile-yes">
@@ -154,7 +156,7 @@
                     <?php wp_reset_postdata(); ?>
                 </div>  <!--  -->
             <?php }
-            if ( is_single( $post ) ) { ?>
+            if ( is_single( $post ) && ($pt && strcmp($pt,'post')===0) ) { ?>
                 <div id="projects-links">
                     <?php $the_query = new WP_Query( 'showposts=-1' ); ?>
                     <ul><?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>

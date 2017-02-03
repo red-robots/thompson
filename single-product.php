@@ -1,0 +1,90 @@
+<?php
+/**
+ * Displays a Single Product Post
+ */
+get_header(); ?>
+<?php if ( have_posts() ) :
+	the_post(); ?>
+    <div class="page-content-projects template-product">
+        <div class="product-description">
+            <h1><?php the_title();?></h1>
+            <?php $recommender = get_field('recommender');
+            if($recommender):?>
+                <div class="recommender">
+                    <?php foreach($recommender as $block):?>
+                        <div class="block">
+                            <?php $title = $block['title'];
+                            $recommended = $block['recommended'];
+                            if($title):?>
+                                <div class="title">
+                                    <?php echo $title;?>
+                                </div><!--.title-->
+                            <?php endif;
+                            if($recommended):?>
+                                <div class="recommended">
+                                    <?php foreach($recommended as $item):
+                                        $i_title = $item['title'];
+                                        $i_desc = $item['description'];
+                                        $i_price = $item['price'];
+                                        $i_web = $item['website'];
+                                        if($i_desc||$i_price||$i_title||$i_web):?>
+                                            <div class="item">
+                                                <div class="column-1">
+
+	                                                <?php if($i_title):?>
+                                                        <div class="title">
+			                                                <?php echo $i_title;?>
+                                                        </div><!--.title-->
+	                                                <?php endif;?>
+	                                                <?php if($i_desc):?>
+                                                        <div class="desc">
+			                                                <?php echo $i_desc;?>
+                                                        </div><!--.desc-->
+	                                                <?php endif;?>
+                                                </div><!--.column-1-->
+                                                <div class="column-2">
+	                                                <?php if($i_price):?>
+                                                        <div class="price">
+			                                                <?php echo $i_price;?>
+                                                        </div><!--.price-->
+	                                                <?php endif;?>
+	                                                <?php if($i_web):?>
+                                                        <div class="web">
+			                                                <a href="http://<?php echo $i_web;?>"><?php echo $i_web;?></a>
+                                                        </div><!--.web-->
+	                                                <?php endif;?>
+                                                </div><!--.column-2-->
+                                            </div>
+                                        <?php endif;?>
+                                    <?php endforeach;?>
+                                </div><!--.recommended-->
+                            <?php endif;?>
+                        </div><!--.block-->
+                    <?php endforeach;?>
+                </div><!--.recommender-->
+            <?php endif;?>
+	        <?php if(get_the_content()):?>
+                <div class="general-info">
+	                <?php $general_title = get_field("general_title");
+	                if($general_title):?>
+                        <div class="title">
+                            <?php echo $general_title;?>
+                        </div><!--.title-->
+                    <?php endif;?>
+                    <div class="copy">
+                        <?php the_content();?>
+                    </div><!--.copy-->
+                </div><!--.general-info-->
+            <?php endif;?>
+        </div><!--#product-description-->
+        <div class="product-gallery">
+            <?php $gallery = get_field('gallery');
+            if($gallery):
+                foreach($gallery as $image):?>
+                    <img src="<?php $image['sizes']['large'];?>" alt="<?php $image['alt'];?>">
+                <?php endforeach;
+            endif;?>
+        </div><!--.product-gallery-->
+    </div><!-- .page-content-projects.template-product -->
+<?php endif; ?>
+<?php get_footer(); ?>

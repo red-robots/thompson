@@ -4,10 +4,15 @@
 	if (!is_admin()) {
  
 		wp_deregister_script('jquery');
-		wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', false, '1.8.3', true);
+		wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js', false, '1.8.3', true);
 		wp_enqueue_script('jquery');
 		
 		// other scripts...
+		wp_register_script(
+			'custom',
+			get_bloginfo('template_directory') . '/js/custom.js',
+			array('jquery') );
+		wp_enqueue_script('custom');
 		wp_register_script(
 			'thumbslider',
 			get_bloginfo('template_directory') . '/js/jquery.easing.1.3.js',
