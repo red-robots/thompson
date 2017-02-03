@@ -27,15 +27,31 @@
                         <?php for($i = 0; $i<count($terms);$i++):
                             $term = $terms[$i];
                             $image = get_field('image_'.$term->slug);
-                            if($image):?>
-                                <div class="column-<?php echo $i;?>">
-                                    <img src="<?php echo $image['url'];?>" alt="<?php echo $image['alt'];?>">
-                                    <div class="title">
-                                        <h2><?php echo $term->slug;?></h2>
-                                    </div><!--.title-->
+	                        $args2 = array(
+		                        'post_type'=>'product',
+		                        'posts_per_page'=>-1,
+		                        'orderby'=>'menu_order',
+		                        'tax_query'=>array(
+			                        array(
+				                        'taxonomy' => 'product_type',
+				                        'field'    => 'term_id',
+				                        'terms'    => $term->term_id,
+			                        ),
+		                        ),
+	                        );
+	                        $products = get_posts($args2);
+                            if($image && count($products)>0):?>
+                                <div class="column-<?php echo $i+1;?>">
+                                    <a href="<?php echo get_the_permalink($products[0]->ID);?>">
+                                        <img src="<?php echo $image['sizes']['large'];?>" alt="<?php echo $image['alt'];?>">
+                                        <div class="title">
+                                            <h2><?php echo $term->slug;?></h2>
+                                        </div><!--.title-->
+                                    </a>
                                 </div><!--.column-#-->
                             <?php endif;
                         endfor;?>
+                        <div class="clear"></div>
                     </div><!--.terms-wrapper-->
                 <?php endif;?>
             </div>
