@@ -28,7 +28,8 @@ get_header(); ?>
                                             $i_desc = $item['description'];
                                             $i_price = $item['price'];
                                             $i_web = $item['website'];
-                                            if($i_desc||$i_price||$i_title||$i_web):?>
+                                            $i_email = $item['email_address'];
+                                            if($i_desc||$i_price||$i_title||$i_web||$i_email):?>
                                                 <div class="item">
                                                     <div class="column-1">
 
@@ -37,9 +38,12 @@ get_header(); ?>
                                                                 <?php echo $i_title;?>
                                                             </div><!--.title-->
                                                         <?php endif;?>
-                                                        <?php if($i_desc):?>
+                                                        <?php if($i_desc || $i_email):?>
                                                             <div class="desc">
-                                                                <?php echo $i_desc;?>
+                                                                <?php if($i_desc) echo $i_desc;?>
+                                                                <div class="email">
+                                                                    <a href="mailto:<?php echo $i_email;?>"><?php echo $i_email;?></a>
+                                                                </div><!--.email-->
                                                             </div><!--.desc-->
                                                         <?php endif;?>
                                                     </div><!--.column-1-->

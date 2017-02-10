@@ -10,7 +10,7 @@ Author: Bellaworks
 
 */
 
-
+@import url('https://fonts.googleapis.com/css?family=Gabriela');
 
 body#home {
 
@@ -263,8 +263,11 @@ h6 {
 	float: right;
 	padding-right: 20px;
 	padding-top: 10px;
+    color: #ffffff;
 }
-
+#links2 a {
+    font-size: inherit;
+}
 #links2 a:link { color: #ffffff; text-decoration: none; }
 #links2 a:visited { color: #ffffff; text-decoration: none; }
 #links2 a:hover { color: #000000; text-decoration: none; }
@@ -273,7 +276,7 @@ h6 {
 
 #header {
 
-	width: 20%;
+	width: 25%;
 
 	position: fixed;
 
@@ -287,7 +290,25 @@ h6 {
 
 	padding-top: 5%;
 
-	padding-right: 2%
+	padding-right: 2%;
+    box-sizing: border-box;
+    height: 100vh;
+    overflow-y: auto;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-align-content: flex-start;
+    align-content: flex-start;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-flex-direction: column;
+    flex-direction: column;
 
 }
 
@@ -496,6 +517,27 @@ color: #333333;
 
 #contact-info a:hover { color: #000000; text-decoration: none; }
 
+.header-inner-wrapper {
+    -webkit-box-flex: 1 1 auto;
+    -moz-box-flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+.header-footer-wrapper {
+    -webkit-box-flex: 0 1 auto;
+    -moz-box-flex: 0 1 auto;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    text-align: center;
+    font-size: 13px;
+    box-sizing: border-box;
+    padding: 0 0 20px 0;
+}
+.header-footer-wrapper a {
+    text-decoration: none;
+}
 #design-info {
      float: left;
      width: 100%;
@@ -505,6 +547,8 @@ color: #333333;
     margin: 30px 0 15px 0;
     text-align: center;
     color: #65655F;
+    font-family: 'Gabriela', serif;
+    font-size: 22px;
 }
 #design-info hr {
     margin: 15px 0;
@@ -561,6 +605,9 @@ color: #333333;
 #design-info ul.sub-menu li.sub a:visited { color: #65655F; text-decoration: none; }
 #design-info ul.sub-menu li.sub a:hover, #design-info ul.sub-menu li.sub a.active { color: #000000; text-decoration: none; }
 
+#header-spacer.design-studio {
+    padding-top: 0;
+}
 .design-studio .page-content {
     width: 100%;
 }
@@ -571,6 +618,7 @@ color: #333333;
 .design-studio .page-content #content h1 {
     font-size: 24px;
     font-weight: 500;
+    font-family: 'Gabriela', serif;
 }
 .design-studio .terms-wrapper .column-1, .design-studio .terms-wrapper .column-2 {
     width: 47.5%;
@@ -669,6 +717,9 @@ color: #333333;
 .template-product .product-description .recommender .block .recommended .item .column-1 .desc {
     font-size: 13px;
     margin: 0 0 10px 0;
+}
+.template-product .product-description .recommender .block .recommended .item .column-1 .desc .email{
+    margin-top: 5px;
 }
 .template-product .product-description .recommender .block .recommended .item .column-2 {
 
@@ -1651,7 +1702,9 @@ font-weight: bold;
 
 
 @media all and (max-width: 600px) {
-
+    #links2 a {
+        font-size: 16px;
+    }
     .template-product .product-description {
         width: 100%;
         float: none;
@@ -1972,6 +2025,7 @@ padding-left: 5%;
 
 #header {
 
+    display: block;
 width: 100%;
 
 position: relative;
@@ -2168,9 +2222,6 @@ padding-right: 0%;
     #design-info > .wrapper {
         width: 90%;
         margin: 0 auto;
-    }
-    #header-spacer.design-studio {
-        padding-top: 0;
     }
     .design-studio .page-content {
         padding: 0;
