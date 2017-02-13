@@ -669,6 +669,7 @@ color: #333333;
     color: white;
     font-weight: 500;
     background-color: black;
+    font-family: OptimaLTStd;
 }
 .template-product .product-description .recommender {
     margin: 30px 0;
@@ -681,6 +682,8 @@ color: #333333;
     border-bottom: 3px solid #7b7b7b;
     padding: 5px 10px;
     margin: 0 0 20px 0;
+    font-family: GoudyOldStyleBT-Italic;
+    font-size: 18px;
 }
 .template-product .product-description .recommender .block .recommended {
 
@@ -764,6 +767,8 @@ color: #333333;
     border-bottom: 3px solid #7b7b7b;
     padding: 5px 10px;
     margin: 0;
+    font-family: GoudyOldStyleBT-Italic;
+    font-size: 18px;
 }
 .template-product .product-description .general-info .copy {
     padding: 10px;
