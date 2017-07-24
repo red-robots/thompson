@@ -686,7 +686,7 @@ color: #333333;
     font-size: 18px;
 }
 .template-product .product-description .recommender .block .recommended {
-
+    font-family: OptimaLTStd;
 }
 .template-product .product-description .recommender .block .recommended .item {
     background-color: white;
