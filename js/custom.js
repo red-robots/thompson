@@ -17,15 +17,16 @@ $(document).ready(function(){
     (function(){
         $('#design-info li.sub a.active').each(function(){
             $this = $(this);
-            console.log($this);
             $this.parents('li.top').addClass('active');
         });
-        $('#design-info ul.top-menu li.top').click(function(){
-            $this = $(this);
-            if($this.hasClass('active')){
-                $this.removeClass('active');
-            } else {
-                $this.addClass('active');
+        $('#design-info ul.top-menu li.top').click(function(e){
+            if(!$(e.target).is('a')){
+                $this = $(this);
+                if($this.hasClass('active')){
+                    $this.removeClass('active');
+                } else {
+                    $this.addClass('active');
+                }
             }
         })
     })();

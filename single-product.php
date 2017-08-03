@@ -1,8 +1,15 @@
 <?php
 /**
  * Displays a Single Product Post
- */
-get_header(); ?>
+ */?>
+<?php $user = wp_get_current_user();
+if ( ! ( in_array( 'client', (array) $user->roles, true ) ||
+            in_array( 'administrator', (array) $user->roles, true ) )
+): 
+    wp_redirect(get_the_permalink(650));
+    exit; 
+endif;?>
+<?php get_header(); ?>
 <?php if ( have_posts() ) :
 	the_post(); ?>
     <div class="page-content-projects template-product">

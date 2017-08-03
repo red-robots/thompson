@@ -45,7 +45,7 @@
 				<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
             </nav>
             <div id="links2">
-                <a href="<?php echo get_the_permalink( 274 ); ?>">Client Login</a>
+                <a href="<?php echo get_the_permalink( 650 ); ?>">Client Login</a>
                 <a href="<?php bloginfo( 'url' ); ?>/sitemap">sitemap</a>
             </div>
         </div><!-- #home-navigation -->
@@ -173,7 +173,7 @@
 				<?php } ?>
             </div><!--.header-inner-wrapper-->
             <div class="header-footer-wrapper">
-                <a href="<?php echo get_the_permalink( 274 ); ?>">Client Login</a>
+                <a href="<?php echo get_the_permalink( 650 ); ?>">Client Login</a>
             </div><!--.header-footer-wrapper-->
         </div><!-- #header -->
         <div id="main">
