@@ -15,7 +15,7 @@
             <div id="content">
                 <h1><?php the_title(); ?></h1>
                 <?php the_content();?>
-                <?php thompson_wp_login_form(); ?>
+                <?php wp_login_form(); ?>
             </div><!--#content-->
         </div><!--.page-content-->
         <div id="content-bottom">

@@ -365,4 +365,8 @@ function thompson_wp_login_form( $args = array() ) {
 		return $form.$form_end;
 	endif;
 }
+/*-------------------------------------
+	Adds Options page for ACF.
+---------------------------------------*/
+if( function_exists('acf_add_options_page') ) {acf_add_options_page();}
 ?>

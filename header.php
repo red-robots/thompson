@@ -28,9 +28,10 @@
 	<?php wp_head(); ?>
 </head>
 <?php if ( is_home() ) { ?>
-<body id="home">
+<?php $image = get_field("home_background","option");?>
+<body id="home" style="background-image: url(<?php if($image) echo $image['url']; ?>);">
 <div id="background-home">
-    <img src="<?php bloginfo( 'template_url' ); ?>/images/bg-body-home.png" alt="" border="0">
+    <img src="<?php if($image) echo $image['url']; ?>" alt="" border="0">
 </div>
 <div id="mobile-bg">
     <div id="home-header">
