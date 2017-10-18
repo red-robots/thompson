@@ -152,26 +152,55 @@
 						<?php the_field( 'left_section' ); ?>
                     </div>  <!--  -->
 				<?php } ?>
-				<?php if ( is_page( 'Projects' ) ) { ?>
-                    <div id="projects-links">
-						<?php $the_query = new WP_Query( 'showposts=-1' ); ?>
-                        <ul><?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                                <li><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></li>
-							<?php endwhile; ?>
-                        </ul>
-						<?php wp_reset_postdata(); ?>
-                    </div>  <!--  -->
-				<?php }
-				if ( is_single( $post ) && ( $pt && strcmp( $pt, 'post' ) === 0 ) ) { ?>
-                    <div id="projects-links">
-						<?php $the_query = new WP_Query( 'showposts=-1' ); ?>
-                        <ul><?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                                <li><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></li>
-							<?php endwhile; ?>
-                        </ul>
-						<?php wp_reset_postdata(); ?>
-                    </div>  <!--  -->
-				<?php } ?>
+				<?php if ( is_page( 'Projects' ) || ( is_single( $post ) && ( $pt && strcmp( $pt, 'post' ) === 0 ))) { ?>
+                    <div id="design-info">
+                        <div class="wrapper">
+                            <div class="title">
+                                Projects
+                            </div><!--.title-->
+                            <hr/>
+							<?php //menu generator
+							$args  = array(
+								'taxonomy'   => "category",
+								'order'      => 'ASC',
+								'orderby'    => 'term_order',
+                                'hide_empty' => 0,
+                                'exclude' => array( 1 )
+							);
+							$terms = get_terms( $args );
+							if ( ! is_wp_error( $terms ) && is_array( $terms ) && ! empty( $terms ) ):
+								echo '<ul class="top-menu">';
+								foreach ( $terms as $term ):
+									echo '<li class="top"><span class="plus">+</span><span class="min">-</span>' . $term->slug;
+									$args  = array(
+										'post_type'      => 'post',
+										'posts_per_page' => - 1,
+										'orderby'        => 'menu_order',
+										'tax_query'      => array(
+											array(
+												'taxonomy' => 'category',
+												'field'    => 'term_id',
+												'terms'    => $term->term_id,
+											),
+										),
+									);
+									$query = new WP_Query( $args );
+									if ( $query->have_posts() ):
+										echo '<ul class="sub-menu">';
+										while ( $query->have_posts() ):
+											$query->the_post();
+											echo '<li class="sub"><a href="' . get_the_permalink() . '">' . get_the_title() . '</a></li>';
+										endwhile;
+										echo '</ul>';
+										wp_reset_postdata();
+									endif;
+									echo '</li>';
+								endforeach;
+								echo '</ul>'; ?>
+							<?php endif;//endif ?>
+                        </div><!--.wrapper-->
+                    </div>  <!-- #design-info -->
+				<?php }?>
             </div><!--.header-inner-wrapper-->
             <div class="header-footer-wrapper">
                 <a href="<?php echo get_the_permalink( 650 ); ?>">Client Login</a>
