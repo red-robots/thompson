@@ -541,6 +541,28 @@ color: #333333;
 .header-footer-wrapper a {
     text-decoration: none;
 }
+#project-info {
+	font-family: "Times New Roman", serif;
+}
+#project-info .title {
+    margin: 30px 0 15px 0;
+    text-align: center;
+    color: #65655F;
+	font-size: 18px;
+	text-transform: uppercase;
+}
+#project-info ul {
+	padding: 0;
+	margin: 10px 0;
+}
+#project-info li {
+	margin: 10px 0;
+	text-align: center;
+	list-style-type: none;
+}
+#project-info li a {
+	text-decoration: none;
+}
 #design-info {
      float: left;
      width: 100%;

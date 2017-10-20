@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico"/>
 
 
-    <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>"/>
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/style.css?ver=0123"/>
     <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri()."/fonts/MyFontsWebfontsKit.css"; ?>"/>
 
     <link href='http://fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
@@ -153,12 +153,8 @@
                     </div>  <!--  -->
 				<?php } ?>
 				<?php if ( is_page( 'Projects' ) || ( is_single( $post ) && ( $pt && strcmp( $pt, 'post' ) === 0 ))) { ?>
-                    <div id="design-info">
+                    <div id="project-info">
                         <div class="wrapper">
-                            <div class="title">
-                                Projects
-                            </div><!--.title-->
-                            <hr/>
 							<?php //menu generator
 							$args  = array(
 								'taxonomy'   => "category",
@@ -169,10 +165,12 @@
 							);
 							$terms = get_terms( $args );
 							if ( ! is_wp_error( $terms ) && is_array( $terms ) && ! empty( $terms ) ):
-								echo '<ul class="top-menu">';
-								foreach ( $terms as $term ):
-									echo '<li class="top"><span class="plus">+</span><span class="min">-</span>' . $term->slug;
-									$args  = array(
+								foreach ( $terms as $term ):?>
+									<div class="title">
+										<?php echo $term->slug;?>
+									</div><!--.title-->
+									<hr/>
+									<?php $args  = array(
 										'post_type'      => 'post',
 										'posts_per_page' => - 1,
 										'orderby'        => 'menu_order',
@@ -194,9 +192,7 @@
 										echo '</ul>';
 										wp_reset_postdata();
 									endif;
-									echo '</li>';
-								endforeach;
-								echo '</ul>'; ?>
+								endforeach; ?>
 							<?php endif;//endif ?>
                         </div><!--.wrapper-->
                     </div>  <!-- #design-info -->
